@@ -14,30 +14,18 @@
       </tr>
     </thead>
 
-    <tbody>
-      <% @friends.each do |friend| %>
-        <%if current_user.id == friend.user_id %>
-          <tr>
-            <td><%= friend.first_name %></td>
-            <td><%= friend.last_name %></td>
-            <td><%= friend.email %></td>
-            <td><%= friend.phone %></td>
-            <td><%= friend.twitter %></td>
-            <td><%= friend.user_id %></td>
-            <td><%= link_to 'Show', friend %></td>
-            <td><%= link_to 'Edit', edit_friend_path(friend) %></td>
-            <td><%= link_to 'Destroy', friend, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <%end%>
-      <% end %>
+    <tbody id ="result_table">
+
+     <%= render 'result', friend: @friend %>
+
     </tbody>
   </table>
 
   <br>
-
-  <%= link_to 'New Friend', new_friend_path, class:"btn btn-dark" %>
-
-
+  <div id="new-friend">
+    <%= link_to 'New Friend', new_friend_path, class:"btn btn-dark", remote: true %>
+  </div>
+  
 <%else%>
   <h1>Home#index</h1>
   <p>my first rails index page</p>

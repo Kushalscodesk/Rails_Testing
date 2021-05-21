@@ -15,6 +15,21 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-467JMJN2WL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      document.addEventListener("tubrolinks:load",function(event){
+          gtag('config', 'G-467JMJN2WL',{
+                page_location: event.data.url,
+                page_path: event.srcElement.location.pathname,
+                page_title: event.srcElement.title
+          });
+      })
+      
+    </script> 
 
   </head>
   <body>

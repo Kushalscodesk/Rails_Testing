@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_07_102851) do
+ActiveRecord::Schema.define(version: 2021_05_20_181336) do
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "recipient_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "friends", force: :cascade do |t|
     t.string "first_name"
@@ -22,6 +29,24 @@ ActiveRecord::Schema.define(version: 2021_05_07_102851) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.index ["user_id"], name: "index_friends_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.integer "conversation_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "recipient_id"
+    t.integer "actor_id"
+    t.datetime "read_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
